@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: The Events Calendar — Show More than Ten Events in Advanced List Widget
+ * Plugin Name: The Events Calendar Extension: Show More than Ten Events in Advanced List Widget
  * Description: This extension lets you override widget settings, and force a specific number of events to show in Events Calendar Pro's Advanced List Widget.
  * Version: 1.0.0
  * Author: Modern Tribe, Inc.
@@ -9,19 +9,39 @@
  */
 defined( 'WPINC' ) or die;
 
-class TEC__More_than_Ten_Events_in_Advanced_List_Widget {
-
+class Tribe__More_than_Ten_Events_in_Advanced_List_Widget {
+	
+	/**
+	 * This extension's current version.
+	 *
+	 * @var string
+	 */
 	const VERSION = '1.0.0';
-
+       
+	/**
+	 * Each plugin required by this extension in 'main class' => 'minimum version #' format.
+	 *
+	 * @var array
+	 */
 	public $plugins_required = array(
 	    'Tribe__Events__Main'      => '4.2',
 	    'Tribe__Events__Pro__Main' => '4.2'
 	);
-
+	
+        /**
+	 * Tribe__More_than_Ten_Events_in_Advanced_List_Widget constructor.
+	 *
+	 * @return void
+	 */
 	public function __construct() {
 		add_action( 'plugins_loaded', array( $this, 'init' ), 100 );
 	}
-
+	
+        /**
+	 * Extension hooks and initialization.
+	 *
+	 * @return void
+	 */
 	public function init() {
 	    
 	    if ( ! function_exists( 'tribe_register_plugin' ) || ! tribe_register_plugin( __FILE__, __CLASS__, self::VERSION, $this->plugins_required ) ) {
@@ -30,7 +50,14 @@ class TEC__More_than_Ten_Events_in_Advanced_List_Widget {
 
 	    add_filter( 'widget_display_callback', array( $this, 'increase_maximum' ), 10, 2 );
 	}
-
+	
+	/**
+	 * Increase the maximum number of events allowed in the list widget output.
+	 *
+	 * @param array $instance
+	 * @param object $widget
+	 * @return array
+	 */	
 	public function increase_maximum( array $instance, $widget ) {
 
 		if ( is_a( $widget, 'Tribe__Events__Pro__Advanced_List_Widget' ) ) {
@@ -41,4 +68,4 @@ class TEC__More_than_Ten_Events_in_Advanced_List_Widget {
 	}
 }
 
-new TEC__More_than_Ten_Events_in_Advanced_List_Widget();
+new Tribe__More_than_Ten_Events_in_Advanced_List_Widget();
