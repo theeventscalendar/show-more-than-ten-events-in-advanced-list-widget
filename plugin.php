@@ -9,12 +9,10 @@
  */
 defined( 'WPINC' ) or die;
 
-class Tribe__More_than_Ten_Events_in_Advanced_List_Widget {
+class Tribe__Extension__More_than_Ten_Events_in_Advanced_List_Widget {
 	
 	/**
 	 * This extension's current version.
-	 *
-	 * @var string
 	 */
 	const VERSION = '1.0.0';
        
@@ -29,9 +27,7 @@ class Tribe__More_than_Ten_Events_in_Advanced_List_Widget {
 	);
 	
         /**
-	 * Tribe__More_than_Ten_Events_in_Advanced_List_Widget constructor.
-	 *
-	 * @return void
+	 * Tribe__Extension__More_than_Ten_Events_in_Advanced_List_Widget constructor.
 	 */
 	public function __construct() {
 		add_action( 'plugins_loaded', array( $this, 'init' ), 100 );
@@ -39,8 +35,6 @@ class Tribe__More_than_Ten_Events_in_Advanced_List_Widget {
 	
         /**
 	 * Extension hooks and initialization.
-	 *
-	 * @return void
 	 */
 	public function init() {
 	    
@@ -68,4 +62,4 @@ class Tribe__More_than_Ten_Events_in_Advanced_List_Widget {
 	}
 }
 
-new Tribe__More_than_Ten_Events_in_Advanced_List_Widget();
+new Tribe__Extension__More_than_Ten_Events_in_Advanced_List_Widget();
